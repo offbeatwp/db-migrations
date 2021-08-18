@@ -1,0 +1,20 @@
+{
+    "name": "offbeatwp/db-migrations",
+    "description": "DB Migrations Support for custom tables",
+    "type": "offbeatwp-service",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Schrijver",
+            "email": "chris@raow.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OffbeatWP\\DbMigrations\\": "src"
+        }
+    },
+    "require": {
+        "robmorgan/phinx": "^0.12.7"
+    }
+}
