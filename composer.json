@@ -14,9 +14,16 @@
             "OffbeatWP\\DbMigrations\\": "src"
         }
     },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit=1G"
+    },
     "require": {
         "php": ">=8.1",
         "robmorgan/phinx": "^0.16.6",
         "offbeatwp/framework": "3.*"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "szepeviktor/phpstan-wordpress": "^2.0"
     }
 }
