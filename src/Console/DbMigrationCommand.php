@@ -14,7 +14,7 @@ final class DbMigrationCommand extends AbstractCommand
     public const COMMAND = 'db:migrations';
 
     /**
-     * @param array<int, string> $args
+     * @param list<string> $args
      * @param array<non-empty-string, string> $argsNamed
      * @throws \Symfony\Component\Console\Exception\ExceptionInterface
      */
