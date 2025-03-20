@@ -5,16 +5,11 @@ namespace OffbeatWP\DbMigrations;
 use OffbeatWP\DbMigrations\Console\DbMigrationCommand;
 use OffbeatWP\Services\AbstractService;
 
-class Service extends AbstractService
+final class DbMigrationService extends AbstractService
 {
-    public function register()
+    public function register(): void
     {
-        $this->registerConsole();
-    }
-
-    public function registerConsole()
-    {
-        if (offbeat('console')->isConsole()) {
+        if (offbeat('console')::isConsole()) {
             offbeat('console')->register(DbMigrationCommand::class);
         }
     }

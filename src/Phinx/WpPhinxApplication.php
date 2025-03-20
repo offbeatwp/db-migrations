@@ -3,23 +3,18 @@ namespace OffbeatWP\DbMigrations\Phinx;
 
 use Phinx\Console\Command\Breakpoint;
 use Phinx\Console\Command\Create;
-use Phinx\Console\Command\Init;
-use Phinx\Console\Command\ListAliases;
 use Phinx\Console\Command\Migrate;
 use Phinx\Console\Command\Rollback;
 use Phinx\Console\Command\SeedCreate;
 use Phinx\Console\Command\SeedRun;
 use Phinx\Console\Command\Status;
-use Phinx\Console\Command\Test;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class WpPhinxApplication extends Application
+final class WpPhinxApplication extends Application
 {
-    /**
-     * Initialize the Phinx console application.
-     */
+    /** Initialize the Phinx console application. */
     public function __construct()
     {
         parent::__construct();
@@ -31,8 +26,7 @@ class WpPhinxApplication extends Application
             new Status(),
             new Breakpoint(),
             new SeedCreate(),
-            new SeedRun(),
-            // new ListAliases(),
+            new SeedRun()
         ]);
     }
 
@@ -43,8 +37,9 @@ class WpPhinxApplication extends Application
      * @param \Symfony\Component\Console\Output\OutputInterface $output An Output instance
      *
      * @return int 0 if everything went fine, or an error code
+     * @throws \Throwable
      */
-    public function doRun(InputInterface $input, OutputInterface $output)
+    public function doRun(InputInterface $input, OutputInterface $output): int
     {
         // always show the version information except when the user invokes the help
         // command as that already does it
