@@ -29,7 +29,6 @@ final class DbMigrationCommand extends AbstractCommand
             if (is_callable([$commandObj, 'setConfig'])) {
                 $commandObj->setConfig(new Config($this->getConfig()));
             }
-
         } else {
             $command = '';
             $commandObj = $consoleApp;
