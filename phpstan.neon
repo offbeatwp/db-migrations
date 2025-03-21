@@ -1,0 +1,9 @@
+# phpstan.neon
+parameters:
+    level: 9
+    phpVersion: 80100
+    treatPhpDocTypesAsCertain: false
+    paths:
+        - src
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
