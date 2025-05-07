@@ -20,20 +20,8 @@ final class DbMigrationCommand extends AbstractCommand
      */
     public function execute(array $args, array $argsNamed): void
     {
-        $consoleApp = new WpPhinxApplication();
-
-        if ($args) {
-            $command = $args[0];
-            $commandObj = $consoleApp->find($command);
-
-            if (is_callable([$commandObj, 'setConfig'])) {
-                $commandObj->setConfig(new Config($this->getConfig()));
-            }
-        } else {
-            $command = '';
-            $commandObj = $consoleApp;
-        }
-
+        $command = $args[0] ?? '';
+        $commandObj = $this->createCommandObject($command);
         $arguments = $this->getArguments($commandObj, $command, $args, $argsNamed);
 
         try {
@@ -43,6 +31,23 @@ final class DbMigrationCommand extends AbstractCommand
         } catch (Exception $e) {
             $this->error($e->getMessage());
         }
+    }
+
+    private function createCommandObject(string $command): Command|WpPhinxApplication
+    {
+        $consoleApp = new WpPhinxApplication();
+
+        if (!$command) {
+            return $consoleApp;
+        }
+
+        $commandObj = $consoleApp->find($command);
+
+        if (is_callable([$commandObj, 'setConfig'])) {
+            $commandObj->setConfig(new Config($this->getConfig()));
+        }
+
+        return $commandObj;
     }
 
     /**
