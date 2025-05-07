@@ -93,8 +93,7 @@ final class DbMigrationCommand extends AbstractCommand
     {
         global $wpdb;
 
-        $dbHost = defined('DB_HOST') ? DB_HOST : 'localhost';
-        $dbHost = explode(':', $dbHost);
+        $dbHost = explode(':', defined('DB_HOST') ? DB_HOST : 'localhost');
 
         $migrationsPath = get_template_directory() . '/db/migrations';
         $seedsPath = get_template_directory() . '/db/seeds';
@@ -105,7 +104,7 @@ final class DbMigrationCommand extends AbstractCommand
         return [
             'paths' => [
                 'migrations' => $migrationsPath,
-                'seeds' => $seedsPath,
+                'seeds' => $seedsPath
             ],
             'environments' => [
                 'default_migration_table' => $wpdb->prefix . 'db_migrations',
@@ -117,7 +116,7 @@ final class DbMigrationCommand extends AbstractCommand
                     'user' => defined('DB_USER') ? DB_USER : null,
                     'pass' => defined('DB_PASSWORD') ? DB_PASSWORD : null,
                     'port' => $dbHost[1] ?? 3306,
-                    'charset' => 'utf8',
+                    'charset' => 'utf8'
                 ],
             ],
             'version_order' => 'creation'
